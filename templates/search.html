@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+        }
+        .container {
+            padding-top: 2rem;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            border-color: #80bdff;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        h1 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            border: none;
+        }
+        .btn-secondary {
+            background: linear-gradient(45deg, #6c757d, #495057);
+            border: none;
+        }
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .result-card h5 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .result-card p {
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        .result-card strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Search Contact</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <form action="/search" method="POST">
+                            <div class="mb-4">
+                                <label for="name" class="form-label">
+                                    <i class="fas fa-search"></i> Enter Name to Search
+                                </label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="d-grid gap-3">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
+                                <a href="/" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i> Back to Home
+                                </a>
+                            </div>
+                        </form>
+
+                        {{if .}}
+                        <div class="result-card">
+                            <h5><i class="fas fa-user"></i> Contact Details</h5>
+                            <p><strong><i class="fas fa-user"></i> Name:</strong> {{.Name}}</p>
+                            <p><strong><i class="fas fa-phone"></i> Phone:</strong> {{.Phone}}</p>
+                            <p><strong><i class="fas fa-envelope"></i> Email:</strong> {{.Email}}</p>
+                            <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> {{.Address}}</p>
+                        </div>
+                        {{else if eq . nil}}
+                        <div class="alert alert-info mt-4">
+                            <i class="fas fa-info-circle"></i> No contact found with that name.
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
